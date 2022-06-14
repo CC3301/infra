@@ -49,11 +49,7 @@ services:
 
   prometheus:
     restart: unless-stopped
-    image: prom/prometheus:latest
-    ports:
-    - 9090:9090
-    volumes:
-    - /opt/containerd/data/monitoring/prometheus:/etc/prometheus
+    build: prometheus/.
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.12
