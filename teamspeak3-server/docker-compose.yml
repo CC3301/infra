@@ -1,0 +1,4 @@
+version: '3'
+services:
+  teamspeak3:
+    build: teamspeak3/.

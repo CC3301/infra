@@ -2,30 +2,28 @@ version: '3'
 services:
   nginx-reverse-proxy:
     build: nginx-reverse-proxy/.
+    restart: unless-stopped
     ports:
     - 80:80
     - 443:443
-    restart: unless-stopped
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.2
 
   # Monitoring Part starts here
   grafana:
+    build: grafana/.
     restart: unless-stopped
-    image: grafana/grafana:latest
-
     volumes:
     - /opt/containerd/data/monitoring/grafana_data/:/var/lib/grafana
-    - /opt/containerd/data/monitoring/grafana/:/etc/grafana
     user: "root"
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.10
     
   #influxdb:
+  #  build: influxdb/.
   #  restart: unless-stopped
-  #  image: influxdb:1.8.5
   #  volumes:
   #  - /opt/containerd/data/monitoring/influxdb:/etc/influxdb
 
@@ -45,8 +43,8 @@ services:
   #      ipv4_address: 172.16.1.11
 
   prometheus:
-    restart: unless-stopped
     build: prometheus/.
+    restart: unless-stopped
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.12
@@ -93,4 +91,3 @@ networks:
     ipam:
      config:
        - subnet: 172.16.1.0/24
-#         gateway: 172.16.1.1
