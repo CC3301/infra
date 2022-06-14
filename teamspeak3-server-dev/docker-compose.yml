@@ -6,4 +6,4 @@ services:
     environment:
       TS3SERVER_LICENSE: accept
     ports:
-      - 9988:9987
+      - "9988:9987/udp"
