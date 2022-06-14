@@ -13,3 +13,4 @@ jobs:
           ssh_key: ${{ secrets.DOCKER_HOST_SSH_KEY }}
           compose_file: monitoring-and-ingress-prd/docker-compose.yml
           pull: true
+          build: true
