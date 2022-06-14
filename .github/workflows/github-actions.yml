@@ -25,6 +25,6 @@ jobs:
           ssh_host: 10.0.0.103:2222
           ssh_user: root
           ssh_key: ${{ secrets.DOCKER_HOST_SSH_KEY }}
-          compose_file: teamspeak3-server/docker-compose.yml
+          compose_file: teamspeak3-server-prd/docker-compose.yml
           pull: true
           build: true
