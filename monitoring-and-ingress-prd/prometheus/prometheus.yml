@@ -25,6 +25,10 @@ scrape_configs:
     static_configs:
       - targets: ['172.16.1.21:9100', '172.16.1.22:9100']
 
+  - job_name: "TeamSpeak 3 Statistics"
+    static_configs:
+      - targets: ['172.16.1.23:8000']
+
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
