@@ -11,5 +11,5 @@ jobs:
           ssh_host: 10.0.0.103
           ssh_user: root
           ssh_key: ${{ secrets.DOCKER_HOST_SSH_KEY }}
-          compose_file: monitoring-and-ingress-prd/docker-compose.yml
+          compose_file: ../monitoring-and-ingress-prd/docker-compose.yml
           pull: true
