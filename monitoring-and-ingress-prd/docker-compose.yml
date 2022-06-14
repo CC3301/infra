@@ -2,9 +2,6 @@ version: '3'
 services:
   nginx-reverse-proxy:
     build: nginx-reverse-proxy/.
-#    image: nginx:latest
-#    volumes:
-#    - /opt/containerd/data/nginx-reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
     ports:
     - 80:80
     - 443:443
