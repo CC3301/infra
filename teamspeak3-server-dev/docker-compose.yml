@@ -1,0 +1,9 @@
+version: '3'
+services:
+  teamspeak3-dev:
+    build: teamspeak3-dev/.
+    restart: unless-stopped
+    environment:
+      TS3SERVER_LICENSE: accept
+    ports:
+      - 30033:30034
