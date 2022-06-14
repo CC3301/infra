@@ -6,4 +6,4 @@ services:
     environment:
       TS3SERVER_LICENSE: accept
     ports:
-      - 30034:30033
+      - 9988:9987
