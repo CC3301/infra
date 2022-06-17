@@ -1,9 +1,11 @@
 global:
-  scrape_interval:     5s
+  scrape_interval: 5s
   external_labels:
     monitor: 'prometheus-scraper'
 
 scrape_configs:
+
+  # Host Status Scrapes
   - job_name: "Node Exporter VM"
     static_configs:
       - targets: ['gameserver0-kch.fink.home:9100', 'storage0-kch.fink.home:9100', 'docker.fink.home:9100', 'github-runner0-kch.fink.home:9100']
@@ -17,6 +19,18 @@ scrape_configs:
     static_configs:
       - targets: ['offsite-backup.fink.vpn:9100']
 
+  # Service Scrapes via external exporter source
+  - job_name: 'WireGuard Statistics (deprecated)'
+    static_configs:
+      - targets: ['10.0.0.102:8000']
+
+  #- job_name: 'Effekta-USV (KCH) Status'
+  #  metrics_path: /ups_metrics
+  #  scrape_interval: 5s
+  #  static_configs:
+  #   - targets: ['10.0.0.104:9199']
+
+  # Service Scrapes via dedicated exporter-container
   - job_name: "PiHole Statistics"
     static_configs:
       - targets: ['172.16.1.20:9100']
@@ -33,29 +47,21 @@ scrape_configs:
     static_configs:
     - targets: ['172.16.1.24:9113']
 
-  - job_name: 'prometheus'
+  # Internal Monitoring Stack Scrapes
+  - job_name: 'Grafana Interal Statistics'
     static_configs:
-      - targets: ['localhost:9090']
+    - targets: ['172.16.1.10:3000']
 
-  - job_name: 'wireguard'
+  - job_name: 'Prometheus Internal Statistics'
     static_configs:
-      - targets: ['10.0.0.102:8000']
-
-  - job_name: "wireguard-new"
-    static_configs:
-      - targets: ['10.0.0.108:8000']
-
-  - job_name: 'grafana'
-    static_configs:
-      - targets: ['10.0.0.103:3000']
-  
-  - job_name: 'usv_effekta'
-    metrics_path: /ups_metrics
-    scrape_interval: 5s
-    static_configs:
-     - targets: ['10.0.0.104:9199']
+      - targets: ['172.16.1.12:9090']
 
 
-  - job_name: 'docker'
-    static_configs:
-      - targets: ['10.0.0.103:19323']
+
+#        - job_name: "wireguard-new"
+#    static_configs:
+#      - targets: ['10.0.0.108:8000']
+
+#  - job_name: 'docker'
+#    static_configs:
+#      - targets: ['10.0.0.103:19323']
