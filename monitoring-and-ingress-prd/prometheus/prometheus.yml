@@ -29,6 +29,10 @@ scrape_configs:
     static_configs:
       - targets: ['172.16.1.23:8000']
 
+  - job_name: "NGINX Statistics"
+    static_configs:
+    - targets: ['172.16.1.24:9113']
+
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']

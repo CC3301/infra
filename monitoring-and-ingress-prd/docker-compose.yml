@@ -97,6 +97,17 @@ services:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.23
 
+  # NGINX - Promehtheus Bridge
+  nginx-prometheus-exporter:
+    image: nginx/nginx-promehteus-exporter:latest
+    restart: unless-stopped
+    args:
+      nginx.scrape-uri: "http://172.16.1.2/basic_status"
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_addre4ss: 172.16.1.24
+
+
 networks:
   monitoring-and-ingress-prd:
     driver: bridge
