@@ -17,6 +17,8 @@ services:
     volumes:
     - /opt/containerd/data/monitoring/grafana_data/:/var/lib/grafana
     user: "root"
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel,grafana-image-renderer
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.10
