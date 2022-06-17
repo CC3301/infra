@@ -60,6 +60,7 @@ services:
     restart: unless-stopped
     environment:
       GATEWAY_URL: "http://192.168.188.1:49000" # ip of your Fritz!Box
+      GATEWAY_LUAURL: "http://192.168.188.1"
       USERNAME: prometheus_bridge_user
       PASSWORD: prometheus_bridge
       LISTEN_ADDRESS: "172.16.1.21:9100"
@@ -71,6 +72,7 @@ services:
     restart: unless-stopped
     environment:
       GATEWAY_URL: "http://10.0.0.1:49000" # ip of your Fritz!Box
+      GATEWAY_LUAURL: "http://10.0.0.1"
       USERNAME: prometheus_bridge_user
       PASSWORD: prometheus_bridge
       LISTEN_ADDRESS: "172.16.1.22:9100"
