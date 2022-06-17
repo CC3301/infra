@@ -97,7 +97,7 @@ services:
     restart: unless-stopped
     command:
       - "-nginx.scrape-uri"
-      - "http://172.16.1.2/basic_status"
+      - "http://172.16.1.2:8080/basic_status"
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.24
