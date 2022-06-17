@@ -21,26 +21,20 @@ services:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.10
     
-  #influxdb:
-  #  build: influxdb/.
-  #  restart: unless-stopped
-  #  volumes:
-  #  - /opt/containerd/data/monitoring/influxdb:/etc/influxdb
-
-  #  - /opt/containerd/data/monitoring/influxdb_data:/var/lib/influxdb
-  #  - /opt/containerd/data/monitoring/influxdb_data2:/var/lib/influxdb2
-  #  ports:
-  #  - 8086:8086
-  #  - "8089:8089/udp"
-
-  #  environment:
-  #   - DOCKER_INFLUXDB_INIT_USERNAME=pmx
-  #   - DOCKER_INFLUXDB_INIT_PASSWORD=pmx
-  #   - DOCKER_INFLUXDB_INIT_ORG=pmx
-  #   - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
-  #  networks:
-  #    monitoring-and-ingress-prd:
-  #      ipv4_address: 172.16.1.11
+  influxdb:
+    build: influxdb/.
+    restart: unless-stopped
+    volumes:
+    - /opt/containerd/data/monitoring/influxdb_data:/var/lib/influxdb
+    - /opt/containerd/data/monitoring/influxdb_data2:/var/lib/influxdb2
+    environment:
+     - DOCKER_INFLUXDB_INIT_USERNAME=pmx
+     - DOCKER_INFLUXDB_INIT_PASSWORD=pmx
+     - DOCKER_INFLUXDB_INIT_ORG=pmx
+     - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.11
 
   prometheus:
     build: prometheus/.
