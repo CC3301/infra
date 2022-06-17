@@ -99,7 +99,7 @@ services:
 
   # NGINX - Promehtheus Bridge
   nginx-prometheus-exporter:
-    image: nginx/nginx-promehteus-exporter:latest
+    image: nginx/nginx-prometheus-exporter:latest
     restart: unless-stopped
     command:
       - "-nginx.scrape-uri"
