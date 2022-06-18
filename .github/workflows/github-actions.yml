@@ -28,3 +28,17 @@ jobs:
           compose_file: teamspeak3-server-prd/docker-compose.yml
           pull: true
           build: true
+
+  Deploy-AdGuard-DNS-PRD-Stack:
+    runs-on: self-hosted
+    steps:
+      # need checkout before using docker-compose-remote-action
+      - uses: actions/checkout@v2
+      - uses: chaplyk/docker-compose-remote-action@v1.1
+        with:
+          ssh_host: 10.0.0.103:2222
+          ssh_user: root
+          ssh_key: ${{ secrets.DOCKER_HOST_SSH_KEY }}
+          compose_file: adguard-dns-prd/docker-compose.yml
+          pull: true
+          build: true
