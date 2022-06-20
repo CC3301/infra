@@ -8,12 +8,12 @@ jobs:
       - uses: wshihadeh/docker-deployment-action@v1
         with:
           remote_docker_host: fink-home-docker-deploy@prd-docker0-kch.fink.home
-          remote_docker_port: 22
           ssh_private_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
           ssh_public_key: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNw0oDx9/Do0r8p6v9KEoqpEuxD0qFOA1sB3LYnIIDBI3JWDpZYGstJWCvZUZQGwf0ycD4IRBVoV3sKrtSnauus=
           deployment_mode: docker-swarm
           copy_stack_file: true
           stack_file_name: monitoring-and-ingress-prd/docker-compose.yml
+          keep_files: 3
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
