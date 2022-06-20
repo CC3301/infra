@@ -4,6 +4,7 @@ jobs:
   Deploy-Monitoring-And-Ingress-PRD-Stack:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v2
       - uses: sagebind/docker-swarm-deploy-action@v2
         with:
           remote_host: ssh://fink-home-docker-deploy@prd-docker0-kch.fink.home
