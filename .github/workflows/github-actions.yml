@@ -5,14 +5,15 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - uses: chaplyk/docker-compose-remote-action@v1.1
+      - uses: wshihadeh/docker-deployment-action@v1
         with:
-          ssh_host: 10.0.0.107:22
-          ssh_user: fink-home-docker-deploy
-          ssh_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
-          compose_file: monitoring-and-ingress-prd/docker-compose.yml
-          pull: true
-          build: true
+          remote_docker_host: fink-home-docker-deploy@prd-docker0-kch.fink.home
+          remote_docker_port: 22
+          ssh_private_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
+          ssh_public_key: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNw0oDx9/Do0r8p6v9KEoqpEuxD0qFOA1sB3LYnIIDBI3JWDpZYGstJWCvZUZQGwf0ycD4IRBVoV3sKrtSnauus=
+          deployment_mode: docker-swarm
+          copy_stack_file: true
+          stack_file_name: monitoring-and-ingress-prd/docker-compose.yml
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
