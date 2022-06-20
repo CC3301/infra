@@ -51,7 +51,7 @@ jobs:
       - uses: chaplyk/docker-compose-remote-action@v1.1
         with:
           ssh_host: 10.0.0.107
-          ssh_user: fink-home-docker-deploy
+          ssh_user: root
           ssh_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
           compose_file: redmine-prd/docker-compose.yml
           pull: true
