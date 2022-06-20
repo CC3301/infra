@@ -17,6 +17,8 @@ jobs:
           #args: stack deploy --compose-file monitoring-and-ingress-prd/docker-compose.yml monitoring-and-ingress-prd
           args: monitoring-and-ingress-prd
           deploy_path: /home/fink-home-docker-deploy/deploy
+          docker_registry_username: ffink85
+          docker_registry_password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
