@@ -5,7 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - uses: sulthonzh/docker-remote-deployment-action@@v0.1.2-beta
+      - uses: sulthonzh/docker-remote-deployment-action@@v0.1.2
         with:
           remote_docker_host: fink-home-docker-deploy@prd-docker0-kch.fink.home
           ssh_private_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
