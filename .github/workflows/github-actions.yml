@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: chaplyk/docker-compose-remote-action@v1.1
         with:
-          ssh_host: 10.0.0.107
+          ssh_host: 10.0.0.107:22
           ssh_user: root
           ssh_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
           compose_file: redmine-prd/docker-compose.yml
