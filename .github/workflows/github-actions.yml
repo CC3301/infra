@@ -15,6 +15,7 @@ jobs:
           stack_file_name: monitoring-and-ingress-prd/docker-compose.yml
           keep_files: 3
           args: monitoring-stack
+          deploy_path: /home/fink-home-docker-deploy/monitoring-and-ingress-prd
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
