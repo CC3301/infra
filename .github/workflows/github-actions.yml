@@ -14,7 +14,7 @@ jobs:
           copy_stack_file: true
           stack_file_name: monitoring-and-ingress-prd/docker-compose.yml
           keep_files: 3
-          input_args: ''
+          args: monitoring-stack
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
