@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: sagebind/docker-swarm-deploy-action@v2
         with:
-          remote_docker_host: ssh://fink-home-docker-deploy@prd-docker0-kch.fink.home
+          remote_host: ssh://fink-home-docker-deploy@prd-docker0-kch.fink.home
           ssh_private_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
           ssh_public_key: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNw0oDx9/Do0r8p6v9KEoqpEuxD0qFOA1sB3LYnIIDBI3JWDpZYGstJWCvZUZQGwf0ycD4IRBVoV3sKrtSnauus=
           #deployment_mode: docker-swarm
