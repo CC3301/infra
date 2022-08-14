@@ -16,10 +16,21 @@ services:
     restart: unless-stopped
     user: "root"
     environment:
-      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
+       GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-piechart-panel
+       GF_RENDERING_SERVER_URL: http://172.16.1.100:8081/render
+       GF_RENDERING_CALLBACK_URL: http://127.16.1.10:3000/
+       GF_LOG_FILTERS: rendering:debug
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.10
+    dns:
+      - 10.0.0.100
+
+  grafana_renderer:
+    image: grafana/grafana-image-renderer:latest
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.100
     dns:
       - 10.0.0.100
     
