@@ -14,9 +14,6 @@ jobs:
           pull: true
           build: true
 
-name: TS3 Server Deploy
-on: [push]
-jobs:
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
     steps:
@@ -30,9 +27,6 @@ jobs:
           pull: true
           build: true
 
-name: Redmine deploy
-on: [push]
-jobs:
   Deploy-Redmine-PRD-Stack:
     runs-on: self-hosted
     if: ${{ false }}
