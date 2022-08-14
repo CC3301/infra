@@ -109,7 +109,7 @@ services:
 
 networks:
   monitoring-and-ingress-prd:
-    driver: overlay
+    driver: bridge
     ipam:
      config:
        - subnet: 172.16.1.0/24
