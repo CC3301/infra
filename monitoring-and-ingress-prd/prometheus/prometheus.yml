@@ -31,11 +31,10 @@ scrape_configs:
     static_configs:
       - targets: ['172.16.1.100:8081']
 
-  #- job_name: 'Effekta-USV (KCH) Status'
-  #  metrics_path: /ups_metrics
-  #  scrape_interval: 5s
-  #  static_configs:
-  #   - targets: ['10.0.0.104:9199']
+  - job_name: 'Effekta-USV (KCH) Status'
+    metrics_path: /ups_metrics
+    static_configs:
+     - targets: ['10.0.0.104:9199']
 
   # Service Scrapes via dedicated exporter-container
   - job_name: "PiHole Statistics"
