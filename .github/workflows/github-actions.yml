@@ -10,27 +10,20 @@ jobs:
           ssh_host: prd-docker0-kch.fink.home
           ssh_user: fink-home-docker-deploy
           ssh_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
-          #ssh_public_key: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNw0oDx9/Do0r8p6v9KEoqpEuxD0qFOA1sB3LYnIIDBI3JWDpZYGstJWCvZUZQGwf0ycD4IRBVoV3sKrtSnauus=
           compose_file: ./monitoring-and-ingress-prd/docker-compose.yml
           pull: true
           build: true
-          #args: stack deploy --compose-file monitoring-and-ingress-prd/docker-compose.yml monitoring-and-ingress-prd
-          #args: monitoring-and-ingress-prd
-          #deploy_path: /home/fink-home-docker-deploy/deploy
-          #docker_registry_username: ffink85
-          #docker_registry_password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
-    if: ${{ false }}
     steps:
       - uses: actions/checkout@v2
       - uses: chaplyk/docker-compose-remote-action@v1.1
         with:
-          ssh_host: 10.0.0.107:22
+          ssh_host: prd-docker0-kch.fink.home
           ssh_user: fink-home-docker-deploy
           ssh_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
-          compose_file: teamspeak3-server-prd/docker-compose.yml
+          compose_file: ./teamspeak3-server-prd/docker-compose.yml
           pull: true
           build: true
 
