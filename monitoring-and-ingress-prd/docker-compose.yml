@@ -28,6 +28,8 @@ services:
 
   grafana_renderer:
     image: grafana/grafana-image-renderer:latest
+    environment:
+      ENABLE_METRICS: true
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.100
