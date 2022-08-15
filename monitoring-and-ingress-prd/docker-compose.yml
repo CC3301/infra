@@ -109,21 +109,21 @@ services:
   #    monitoring-and-ingress-prd:
   #      ipv4_address: 172.16.1.23
 
-  teamspeak3-prometheus-exporterv2:
-    build: teamspeak3-prometheus-exporterv2/.
-    restart: unless-stopped
-    command:
-      - "-user"
-      - "prometheus-bridge"
-      - "-remote"
-      - "10.0.0.107:10011"
-      - "-listen"
-      - "172.16.1.23:9100"
-    environment:
-      SERVERQUERY_PASSWORD: "3tFmoWD9"
-    networks:
-      monitoring-and-ingress-prd:
-        ipv4_address: 172.16.1.23
+  #teamspeak3-prometheus-exporterv2:
+  #  build: teamspeak3-prometheus-exporterv2/.
+  #  restart: unless-stopped
+  #  command:
+  #    - "-user"
+  #    - "prometheus-bridge"
+  #    - "-remote"
+  #    - "10.0.0.107:10011"
+  #    - "-listen"
+  #    - "172.16.1.23:9100"
+  #  environment:
+  #    SERVERQUERY_PASSWORD: "3tFmoWD9"
+  #  networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.23
 
   # NGINX - Promehtheus Bridge
   nginx-prometheus-exporter:
