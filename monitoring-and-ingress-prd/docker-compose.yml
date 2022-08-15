@@ -104,7 +104,7 @@ services:
       TEAMSPEAK_HOST: teamspeak.fink.home
       TEAMSPEAK_PORT: 10011
       TEAMSPEAK_USERNAME: "prometheus-bridge"
-      TEAMSPEAK_PASSWORD: "wspnDDEi"
+      TEAMSPEAK_PASSWORD: "3tFmoWD9"
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.23
