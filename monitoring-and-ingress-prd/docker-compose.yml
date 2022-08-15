@@ -116,7 +116,7 @@ services:
       - "-user"
       - "prometheus-bridge"
       - "-remote"
-      - "teamspeak.fink.home:10011"
+      - "10.0.0.107:10011"
       - "-listen"
       - "172.16.1.23:9100"
     environment:
