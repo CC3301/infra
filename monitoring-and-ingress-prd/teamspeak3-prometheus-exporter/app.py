@@ -85,8 +85,7 @@ class Teamspeak3MetricService:
         isLoginSuccessful = self.serverQueryService.login(self.username, self.password)
 
         if not isLoginSuccessful:
-            raise()
-            print('Login not successful')
+            print(f"Login not successful for {self.host}:{self.port}\n Username: {self.username}\n Password: {self.password}")
             exit(1)
 
     def read(self):
