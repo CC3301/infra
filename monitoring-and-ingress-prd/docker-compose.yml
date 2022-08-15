@@ -101,7 +101,7 @@ services:
     build: teamspeak3-prometheus-exporter/.
     restart: unless-stopped
     environment:
-      TEAMSPEAK_HOST: 10.0.0.103
+      TEAMSPEAK_HOST: teamspeak.fink.home
       TEAMSPEAK_PORT: 10011
       TEAMSPEAK_USERNAME: "prometheus-bridge"
       TEAMSPEAK_PASSWORD: "wspnDDEi"
