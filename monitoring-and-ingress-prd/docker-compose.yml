@@ -97,17 +97,33 @@ services:
         ipv4_address: 172.16.1.22
 
   # TeamSpeak - Prometheus Bridge
-  teamspeak3-promtheus-exporter:
-    build: teamspeak3-prometheus-exporter/.
+  #teamspeak3-promtheus-exporter:
+  #  build: teamspeak3-prometheus-exporter/.
+  #  restart: unless-stopped
+  #  environment:
+  #    TEAMSPEAK_HOST: teamspeak.fink.home
+  #    TEAMSPEAK_PORT: 10011
+  #    TEAMSPEAK_USERNAME: "prometheus-bridge"
+  #    TEAMSPEAK_PASSWORD: "3tFmoWD9"
+  #  networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.23
+
+  teamspeak3-prometheus-exporterv2:
+    build: teamspeak3-prometheus-exporterv2/.
     restart: unless-stopped
+    command:
+      - "-user"
+      - "prometheus-bridge"
+      - "-remote"
+      - "teamspeak.fink.home:10011"
+      - "-listen"
+      - "172.16.1.23:9100"
     environment:
-      TEAMSPEAK_HOST: teamspeak.fink.home
-      TEAMSPEAK_PORT: 10011
-      TEAMSPEAK_USERNAME: "prometheus-bridge"
-      TEAMSPEAK_PASSWORD: "3tFmoWD9"
+      SERVERQUERY_PASSWORD: "3tFmoWD9"
     networks:
       monitoring-and-ingress-prd:
-        ipv4_address: 172.16.1.23
+        ipv4_address: 127.16.1.23
 
   # NGINX - Promehtheus Bridge
   nginx-prometheus-exporter:
