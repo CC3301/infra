@@ -123,7 +123,7 @@ services:
       SERVERQUERY_PASSWORD: "3tFmoWD9"
     networks:
       monitoring-and-ingress-prd:
-        ipv4_address: 127.16.1.23
+        ipv4_address: 172.16.1.23
 
   # NGINX - Promehtheus Bridge
   nginx-prometheus-exporter:
