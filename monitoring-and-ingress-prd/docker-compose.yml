@@ -75,7 +75,7 @@ services:
     image: kehrhardt/fritzbox_exporter:latest
     restart: unless-stopped
     environment:
-      GATEWAY_URL: "http://192.168.188.1:49000" # ip of your Fritz!Box
+      GATEWAY_URL: "http://192.168.188.1:49000" 
       GATEWAY_LUAURL: "http://192.168.188.1"
       USERNAME: prometheus_bridge_user
       PASSWORD: prometheus_bridge
@@ -87,7 +87,7 @@ services:
     image: kehrhardt/fritzbox_exporter:latest
     restart: unless-stopped
     environment:
-      GATEWAY_URL: "http://10.0.0.1:49000" # ip of your Fritz!Box
+      GATEWAY_URL: "http://10.0.0.1:49000" 
       GATEWAY_LUAURL: "http://10.0.0.1"
       USERNAME: prometheus_bridge_user
       PASSWORD: prometheus_bridge
@@ -95,35 +95,6 @@ services:
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.22
-
-  # TeamSpeak - Prometheus Bridge
-  #teamspeak3-promtheus-exporter:
-  #  build: teamspeak3-prometheus-exporter/.
-  #  restart: unless-stopped
-  #  environment:
-  #    TEAMSPEAK_HOST: teamspeak.fink.home
-  #    TEAMSPEAK_PORT: 10011
-  #    TEAMSPEAK_USERNAME: "prometheus-bridge"
-  #    TEAMSPEAK_PASSWORD: "3tFmoWD9"
-  #  networks:
-  #    monitoring-and-ingress-prd:
-  #      ipv4_address: 172.16.1.23
-
-  #teamspeak3-prometheus-exporterv2:
-  #  build: teamspeak3-prometheus-exporterv2/.
-  #  restart: unless-stopped
-  #  command:
-  #    - "-user"
-  #    - "prometheus-bridge"
-  #    - "-remote"
-  #    - "10.0.0.107:10011"
-  #    - "-listen"
-  #    - "172.16.1.23:9100"
-  #  environment:
-  #    SERVERQUERY_PASSWORD: "3tFmoWD9"
-  #  networks:
-  #    monitoring-and-ingress-prd:
-  #      ipv4_address: 172.16.1.23
 
   # NGINX - Promehtheus Bridge
   nginx-prometheus-exporter:
@@ -136,12 +107,13 @@ services:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.24
 
+  # Wireguard GEOIP information for connected endpoints
   wireguard-endpoint-localizer:
     build: wireguard-endpoint-localizer/.
     restart: unless-stopped
     networks:
       monitoring-and-ingress-prd:
-      ipv4_address: 172.16.1.25
+        ipv4_address: 172.16.1.25
 
 networks:
   monitoring-and-ingress-prd:
