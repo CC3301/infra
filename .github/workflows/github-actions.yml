@@ -5,8 +5,17 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: recursive
+      - name: Checkout submodules
+        env:
+          GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+        run: |
+          eval `ssh-agent -s`
+
+          echo "${{secrets.GITHUBKEY}}" | ssh-add -
+          git submodule update --init wireguard-endpoint-localizer
+          ssh-add -D
+
+          eval `ssh-agent -k`
       - uses: chaplyk/docker-compose-remote-action@v1.1
         with:
           ssh_host: prd-docker0-kch.fink.home
