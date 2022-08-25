@@ -136,6 +136,12 @@ services:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.24
 
+  wireguard-endpoint-localizer:
+    build: wireguard-endpoint-localizer/.
+    restart: unless-stopped
+    networks:
+      monitoring-and-ingress-prd:
+      ipv4_address: 172.16.1.25
 
 networks:
   monitoring-and-ingress-prd:
