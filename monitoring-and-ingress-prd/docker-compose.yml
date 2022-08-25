@@ -112,7 +112,7 @@ services:
     build: wireguard-endpoint-localizer/.
     restart: unless-stopped
     environment:
-      PROM_URL: "http://prometheus.fink.home"
+      PROM_URL: "http://172.16.1.12:9090"
       PROM_QUERY: '{"query": "wireguard_peer_info"}'
       GEO_API_URL: "https://json.geoiplookup.io"
     networks:
