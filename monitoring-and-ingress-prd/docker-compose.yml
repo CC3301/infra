@@ -140,7 +140,7 @@ services:
       - cadvisor-redis
 
   cadvisor-redis:
-    image: redist:latest
+    image: redis:latest
     restart: unless-stopped
     networks:
       cadvisor_internal_network:
