@@ -122,6 +122,18 @@ services:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.25
 
+  # Docker Stats Exporter
+  docker-stats-exporter:
+    image: cdewitt/docker-stats-exporter
+    restart: unless-stopped
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/proc:/proc:ro'
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.26
+
 networks:
   monitoring-and-ingress-prd:
     driver: bridge

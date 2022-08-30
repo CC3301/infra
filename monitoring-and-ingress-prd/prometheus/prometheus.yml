@@ -53,6 +53,10 @@ scrape_configs:
     static_configs:
       - targets: ['172.16.1.25:8000']
 
+  - job_name: "Docker Statistics"
+    static_configs:
+    - targets: ['172.16.1.26:8081']
+
   # Internal Monitoring Stack Scrapes
   - job_name: 'Grafana Interal Statistics'
     static_configs:
