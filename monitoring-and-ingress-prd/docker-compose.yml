@@ -133,9 +133,9 @@ services:
     - /var/lib/docker/:/var/lib/docker:ro
     networks:
       monitoring-and-ingress-prd:
-        ipv4_address: 172.16.1.26
+        ipv4_address: 172.16.1.30
       cadvisor_internal_network:
-        ipv4_address: 172.16.2.1
+        ipv4_address: 172.16.2.10
     depends_on:
       - cadvisor-redis
 
@@ -144,7 +144,7 @@ services:
     restart: unless-stopped
     networks:
       cadvisor_internal_network:
-        ipv4_address: 172.16.2.2
+        ipv4_address: 172.16.2.11
 
 networks:
   monitoring-and-ingress-prd:
