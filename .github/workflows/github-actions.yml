@@ -2,7 +2,6 @@ name: Monitoring Stack Deploy
 on: [push]
 jobs:
   Deploy-Monitoring-And-Ingress-PRD-Stack:
-    if: ${{ false }}
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
@@ -16,22 +15,6 @@ jobs:
           compose_file: ./monitoring-and-ingress-prd/docker-compose.yml
           pull: true
           build: true
-
-  Deploy-new-ordered_stack:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-      - uses: chaplyk/docker-compose-remote-action@v1.1
-        with:
-          ssh_host: prd-docker0-kch.fink.home
-          ssh_user: fink-home-docker-deploy
-          ssh_key: ${{ secrets.NEW_DOCKER_SSH_KEY }}
-          compose_file: ./services/docker-compose.yml
-          pull: true
-          build: true
-
 
   Deploy-Teamspeak3-Server-PRD-Stack:
     runs-on: self-hosted
