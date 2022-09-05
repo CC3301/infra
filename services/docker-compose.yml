@@ -1,0 +1,214 @@
+version: '3'
+
+#==============================================================================
+# Define Networks
+#==============================================================================
+networks:
+
+  # Communication between containers
+  intcommnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.17.0/24
+
+  # Dedicated Exporter Containers
+  exporternet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.18.0/24
+
+  # Network for Services available via the Ingress Reverse Proxy
+  extsvcnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.16.0/24
+        
+
+#==============================================================================
+# Define Services
+#==============================================================================
+services:
+
+  # Ingress Proxy for all connections
+  ingress-reverse-proxy:
+    build: ingress-reverse-proxy/.
+    restart: unless-stopped
+    ports:
+    - 80:80
+    - 443:443
+    networks:
+      extsvcnet:
+        ipv4_address: 172.16.16.1
+
+
+  #----------------------------------------------------------------------------
+  # Grafana
+  #----------------------------------------------------------------------------
+
+  # Main Grafana container
+  grafana:
+    build: grafana/.
+    restart: unless-stopped
+    user: "root"
+    environment:
+       GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-piechart-panel
+       GF_RENDERING_SERVER_URL: http://172.16.17.11:8081/render
+       GF_RENDERING_CALLBACK_URL: http://grafana.fink.home/
+       GF_ROOT_URL: http://grafana.fink.home/
+    networks:
+      extsvcnet:
+        ipv4_address: 172.16.16.10
+      intcommnet:
+        ipv4_address: 172.16.17.10
+
+  # Render Imanges in Grafana Alerts
+  grafana_renderer:
+    image: grafana/grafana-image-renderer:latest
+    environment:
+      ENABLE_METRICS: "true"
+      BROWSER_TZ: "Europe/Berlin"
+    networks:
+      intcommnet:
+        ipv4_address: 172.16.17.11
+    dns:
+      - 10.0.0.100
+
+
+  #----------------------------------------------------------------------------
+  # TimeSeries Database
+  #----------------------------------------------------------------------------
+
+  # InfluxDB
+  influxdb:
+    build: influxdb/.
+    restart: unless-stopped
+    volumes:
+    - /opt/containerd/data/monitoring/influxdb_data:/var/lib/influxdb
+    - /opt/containerd/data/monitoring/influxdb_data2:/var/lib/influxdb2
+    environment:
+     - DOCKER_INFLUXDB_INIT_USERNAME=pmx
+     - DOCKER_INFLUXDB_INIT_PASSWORD=pmx
+     - DOCKER_INFLUXDB_INIT_ORG=pmx
+     - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
+    networks:
+      intcommnet:
+        ipv4_address: 172.16.17.12
+
+  # Prometheus instance
+  prometheus:
+    build: prometheus/.
+    restart: unless-stopped
+    networks:
+      intcommnet:
+        ipv4_address: 172.16.17.1
+      exporternet:
+        ipv4_address: 172.16.18.1
+      extsvcnet:
+        ipv4_address: 172.16.16.11
+    dns:
+      - 10.0.0.100
+
+
+#==============================================================================
+# Exporter Containers
+#==============================================================================
+
+  #----------------------------------------------------------------------------
+  # PiHole - Prometheus Bridge
+  #----------------------------------------------------------------------------
+  pihole-prometheus-exporter:
+    image: 'ekofr/pihole-exporter:latest'
+    environment:
+    - PIHOLE_HOSTNAME=pihole0-kch.fink.home,pihole1-tg.fink.home
+    - PIHOLE_API_TOKEN=491322461603f606a67431585e063eedc586908538b535384d6b0c9dbd8d5ff2,491322461603f606a67431585e063eedc586908538b535384d6b0c9dbd8d5ff2
+    - PORT=9100
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.10
+
+  #----------------------------------------------------------------------------
+  # FritzBox - Prometheus Bridge
+  #----------------------------------------------------------------------------
+  fritzbox-prometheus-exporter-fritzbox1-tg.fink.home:
+    image: kehrhardt/fritzbox_exporter:latest
+    restart: unless-stopped
+    environment:
+      GATEWAY_URL: "http://192.168.188.1:49000" 
+      GATEWAY_LUAURL: "http://192.168.188.1"
+      USERNAME: prometheus_bridge_user
+      PASSWORD: prometheus_bridge
+      LISTEN_ADDRESS: "172.16.1.21:9100"
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.11
+  fritzbox-prometheus-exporter-fritzbox0-kch.fink.home:
+    image: kehrhardt/fritzbox_exporter:latest
+    restart: unless-stopped
+    environment:
+      GATEWAY_URL: "http://10.0.0.1:49000" 
+      GATEWAY_LUAURL: "http://10.0.0.1"
+      USERNAME: prometheus_bridge_user
+      PASSWORD: prometheus_bridge
+      LISTEN_ADDRESS: "172.16.1.22:9100"
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.12
+
+  #----------------------------------------------------------------------------
+  # Wireguard GEOIP information for connected endpoints
+  #----------------------------------------------------------------------------
+  wireguard-endpoint-localizer:
+    build: wireguard-endpoint-localizer/.
+    restart: unless-stopped
+    environment:
+      PROM_URL: "http://172.16.18.1:9090"
+      PROM_QUERY: '{"query": "wireguard_peer_info"}'
+      GEO_API_URL: "https://json.geoiplookup.io"
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.13
+
+
+  #----------------------------------------------------------------------------
+  # NGINX - Promehtheus Bridge
+  #----------------------------------------------------------------------------
+  nginx-prometheus-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    restart: unless-stopped
+    command:
+      - "-nginx.scrape-uri"
+      - "http://172.16.17.1:8080/basic_status"
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.14
+
+
+  #----------------------------------------------------------------------------
+  # Docker Stats Exporter
+  #----------------------------------------------------------------------------
+
+  # Main cadvisor network
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    restart: unless-stopped
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.15
+    depends_on:
+      - cadvisor-redis
+  
+  # Redis Database for cadvisor
+  cadvisor-redis:
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      exporternet:
+        ipv4_address: 172.16.18.254
