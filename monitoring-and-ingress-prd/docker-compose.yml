@@ -21,8 +21,6 @@ services:
        GF_RENDERING_CALLBACK_URL: http://grafana.fink.home/
        GF_LOG_FILTERS: rendering:debug
        GF_ROOT_URL: http://grafana.fink.home/
-    volumes:
-      - ./grafana/provisioning:/etc/grafana/provisioning/
     networks:
       monitoring-and-ingress-prd:
         ipv4_address: 172.16.1.10
