@@ -37,8 +37,8 @@ services:
     build: ingress-reverse-proxy/.
     restart: unless-stopped
     ports:
-    - 80:80
-    - 443:443
+    - 8080:80
+    # - 443:443
     networks:
       extsvcnet:
         ipv4_address: 172.16.16.1
@@ -96,6 +96,8 @@ services:
     networks:
       intcommnet:
         ipv4_address: 172.16.17.12
+      extsvcnet:
+        ipv4_address: 172.16.16.11
 
   # Prometheus instance
   prometheus:
@@ -107,7 +109,7 @@ services:
       exporternet:
         ipv4_address: 172.16.18.1
       extsvcnet:
-        ipv4_address: 172.16.16.11
+        ipv4_address: 172.16.16.12
     dns:
       - 10.0.0.100
 
