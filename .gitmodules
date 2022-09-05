@@ -1,6 +1,3 @@
 [submodule "monitoring-and-ingress-prd/wireguard-endpoint-localizer"]
 	path = monitoring-and-ingress-prd/wireguard-endpoint-localizer
 	url = git@github.com:CC3301/wireguard-endpoint-localizer.git
-[submodule "services/wireguard-endpoint-localizer"]
-	path = services/wireguard-endpoint-localizer
-	url = git@github.com:CC3301/wireguard-endpoint-localizer
