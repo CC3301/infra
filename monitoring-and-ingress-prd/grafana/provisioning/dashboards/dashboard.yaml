@@ -16,7 +16,9 @@ providers:
   # <bool> enable dashboard editing
   editable: true
   # <int> how often Grafana will scan for changed dashboards
-  updateIntervalSeconds: 10
+  updateIntervalSeconds: 0
   options:
+    # <bool> use folder names from filesystem to create folders in Grafana
+    foldersFromFilesStructure: true
     # <string, required> path to dashboard files on disk. Required
     path: /etc/grafana/provisioning/dashboards

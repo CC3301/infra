@@ -1,0 +1,178 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 41,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "iSS_-bqGz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 23,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "basemap": {
+            "config": {},
+            "name": "Layer 0",
+            "type": "default"
+          },
+          "controls": {
+            "mouseWheelZoom": true,
+            "showAttribution": true,
+            "showDebug": false,
+            "showScale": false,
+            "showZoom": true
+          },
+          "layers": [
+            {
+              "config": {
+                "showLegend": false,
+                "style": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "opacity": 0.4,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "fixed": 3,
+                    "max": 15,
+                    "min": 2
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/x-mark.svg",
+                    "mode": "fixed"
+                  },
+                  "text": {
+                    "field": "isp",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "textConfig": {
+                    "fontSize": 10,
+                    "offsetX": 0,
+                    "offsetY": -5,
+                    "textAlign": "left",
+                    "textBaseline": "bottom"
+                  }
+                }
+              },
+              "location": {
+                "mode": "auto"
+              },
+              "name": "Connections",
+              "tooltip": true,
+              "type": "markers"
+            }
+          ],
+          "view": {
+            "id": "coords",
+            "lat": 45.287201,
+            "lon": -29.810009,
+            "zoom": 3.83
+          }
+        },
+        "pluginVersion": "9.0.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "iSS_-bqGz"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "wireguard_geo_location_total",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "range": false,
+            "refId": "A"
+          }
+        ],
+        "title": "Wireguard Connections",
+        "transformations": [],
+        "transparent": true,
+        "type": "geomap"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 36,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "WireGuard Peer Locations",
+    "uid": "ZfoXJtZ4k",
+    "version": 13,
+    "weekStart": ""
+  }
