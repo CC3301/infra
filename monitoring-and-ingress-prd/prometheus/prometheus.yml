@@ -65,3 +65,8 @@ scrape_configs:
   - job_name: 'Prometheus Internal Statistics'
     static_configs:
       - targets: ['172.16.1.12:9090']
+
+  # Test-targets
+  - job_name: 'Minecraft Server Stats'
+    static_configs:
+      - targets: ['gameserver0-kch.fink.home:19565']
