@@ -35,7 +35,7 @@
         "collapsed": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "gridPos": {
           "h": 1,
@@ -52,7 +52,7 @@
         "columns": [],
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "description": "",
         "fontSize": "100%",
@@ -394,7 +394,7 @@
         "collapsed": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "gridPos": {
           "h": 1,
@@ -414,7 +414,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "decimals": 2,
         "fieldConfig": {
@@ -510,7 +510,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "decimals": 2,
         "fieldConfig": {
@@ -603,7 +603,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "description": "",
         "fieldConfig": {
@@ -698,7 +698,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "description": "",
         "fieldConfig": {
@@ -795,7 +795,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -889,7 +889,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -995,7 +995,7 @@
           },
           "datasource": {
             "type": "prometheus",
-            "uid": "iSS_-bqGz"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "definition": "label_values(container_cpu_user_seconds_total, job)",
           "hide": 0,
@@ -1026,7 +1026,7 @@
           },
           "datasource": {
             "type": "prometheus",
-            "uid": "iSS_-bqGz"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "definition": "label_values(container_cpu_user_seconds_total{job=\"$job\",from=\"docker\"}, name)",
           "hide": 0,
@@ -1057,7 +1057,7 @@
           },
           "datasource": {
             "type": "prometheus",
-            "uid": "iSS_-bqGz"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "definition": "label_values(container_cpu_user_seconds_total{name=~\"$name\"}, instance)",
           "hide": 0,
@@ -1088,7 +1088,7 @@
           },
           "datasource": {
             "type": "prometheus",
-            "uid": "iSS_-bqGz"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "definition": "label_values(container_network_receive_bytes_total{name=~\"$name\",instance=~\"$instance\"}, interface)",
           "hide": 0,

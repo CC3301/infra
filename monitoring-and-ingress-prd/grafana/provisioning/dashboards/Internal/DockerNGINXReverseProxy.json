@@ -31,7 +31,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -114,7 +114,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -198,7 +198,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -282,7 +282,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -375,7 +375,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,

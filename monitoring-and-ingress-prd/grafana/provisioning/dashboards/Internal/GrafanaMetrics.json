@@ -57,7 +57,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -136,7 +136,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -211,7 +211,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -286,7 +286,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -362,7 +362,7 @@
         "columns": [],
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "100%",
         "gridPos": {
@@ -428,7 +428,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -525,7 +525,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -631,7 +631,7 @@
         "columns": [],
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "100%",
         "gridPos": {
@@ -698,7 +698,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -793,7 +793,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -888,7 +888,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "description": "Aggregated over all Grafana nodes.",
         "fieldConfig": {

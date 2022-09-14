@@ -91,7 +91,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "iSS_-bqGz"
+              "uid": "P1809F7CD0C75ACF3"
             },
             "expr": "grafana_image_renderer_browser_info",
             "instant": true,
@@ -169,7 +169,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "iSS_-bqGz"
+              "uid": "P1809F7CD0C75ACF3"
             },
             "expr": "grafana_image_renderer_browser_info",
             "instant": true,
@@ -244,7 +244,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "iSS_-bqGz"
+              "uid": "P1809F7CD0C75ACF3"
             },
             "expr": "sum by (status) (label_replace(label_replace(rate(grafana_image_renderer_service_http_request_duration_seconds_count[$__rate_interval]), \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"), \"status\", \"${1}\",   \"status_code\", \"([a-z]+)\"))",
             "format": "time_series",

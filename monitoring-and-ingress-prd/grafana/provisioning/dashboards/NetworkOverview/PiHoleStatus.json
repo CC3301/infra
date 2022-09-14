@@ -35,7 +35,7 @@
         "collapsed": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "gridPos": {
           "h": 1,
@@ -51,7 +51,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -134,7 +134,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -211,7 +211,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -294,7 +294,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "80%",
         "format": "short",
@@ -341,7 +341,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "80%",
         "format": "short",
@@ -389,7 +389,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "80%",
         "format": "short",
@@ -435,7 +435,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -517,7 +517,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fieldConfig": {
           "defaults": {
@@ -598,7 +598,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -685,7 +685,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -778,7 +778,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -872,7 +872,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -955,7 +955,7 @@
         "columns": [],
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "100%",
         "gridPos": {
@@ -1012,7 +1012,7 @@
         "columns": [],
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fontSize": "100%",
         "gridPos": {
@@ -1075,7 +1075,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -1164,7 +1164,7 @@
         "dashes": false,
         "datasource": {
           "type": "prometheus",
-          "uid": "iSS_-bqGz"
+          "uid": "P1809F7CD0C75ACF3"
         },
         "fill": 1,
         "fillGradient": 0,
@@ -1259,7 +1259,7 @@
           },
           "datasource": {
             "type": "prometheus",
-            "uid": "iSS_-bqGz"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "definition": "label_values(pihole_status{job=\"PiHole Statistics\"}, hostname)",
           "hide": 0,
