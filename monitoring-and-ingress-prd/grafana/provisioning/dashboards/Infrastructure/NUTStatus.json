@@ -34,7 +34,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "iSS_-bqGz"
+        "uid": "P1809F7CD0C75ACF3"
       },
       "gridPos": {
         "h": 1,
@@ -374,7 +374,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "iSS_-bqGz"
+        "uid": "P1809F7CD0C75ACF3"
       },
       "gridPos": {
         "h": 1,
