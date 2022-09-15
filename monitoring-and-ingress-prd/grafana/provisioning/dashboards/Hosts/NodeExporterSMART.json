@@ -26,7 +26,7 @@
     "fiscalYearStartMonth": 0,
     "gnetId": 10530,
     "graphTooltip": 0,
-    "id": 65,
+    "id": 64,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -55,7 +55,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "#299c46"
+                  "color": "#299c46",
+                  "value": null
                 },
                 {
                   "color": "#E02F44",
@@ -137,7 +138,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "#299c46"
+                  "color": "#299c46",
+                  "value": null
                 },
                 {
                   "color": "rgba(237, 129, 40, 0.89)",
@@ -222,7 +224,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": null
                 },
                 {
                   "color": "red",
@@ -548,7 +551,8 @@
               "steps": [
                 {
                   "color": "green",
-                  "index": 0
+                  "index": 0,
+                  "value": null
                 },
                 {
                   "color": "#EAB839",
@@ -653,7 +657,8 @@
               "steps": [
                 {
                   "color": "green",
-                  "index": 0
+                  "index": 0,
+                  "value": null
                 },
                 {
                   "color": "#EAB839",
@@ -729,7 +734,8 @@
               "steps": [
                 {
                   "color": "green",
-                  "index": 0
+                  "index": 0,
+                  "value": null
                 },
                 {
                   "color": "yellow",
@@ -831,7 +837,8 @@
               "steps": [
                 {
                   "color": "red",
-                  "index": 0
+                  "index": 0,
+                  "value": null
                 },
                 {
                   "color": "#EAB839",
@@ -915,7 +922,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "#299c46"
+                  "color": "#299c46",
+                  "value": null
                 },
                 {
                   "color": "rgba(237, 129, 40, 0.89)",
@@ -1457,12 +1465,12 @@
       "list": [
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": [
-              "vms1.fink.home:9100"
+              "All"
             ],
             "value": [
-              "vms1.fink.home:9100"
+              "$__all"
             ]
           },
           "datasource": {
@@ -1490,7 +1498,7 @@
         },
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": [
               "All"
             ],
@@ -1523,12 +1531,12 @@
         },
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": [
-              "/dev/sda"
+              "All"
             ],
             "value": [
-              "/dev/sda"
+              "$__all"
             ]
           },
           "datasource": {
@@ -1588,6 +1596,6 @@
     "timezone": "browser",
     "title": "S.M.A.R.T disk monitoring for Prometheus Dashboard",
     "uid": "PkPI4xGWz",
-    "version": 2,
+    "version": 1,
     "weekStart": ""
   }
