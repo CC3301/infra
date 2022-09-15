@@ -21,6 +21,9 @@ scrape_configs:
   - job_name: "Node Exporter External"
     static_configs:
       - targets: ['offsite-backup.fink.vpn:9100']
+  - job_name: "SMART Values"
+    static_configs:
+      - targets: ['vms1.fink.home:9257', 'vms2.fink.home:9257', 'vms3.fink.home:9257']
 
   # Service Scrapes via external exporter source
   - job_name: 'WireGuard Statistics (deprecated)'
