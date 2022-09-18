@@ -26,7 +26,6 @@
     "fiscalYearStartMonth": 0,
     "gnetId": 16514,
     "graphTooltip": 0,
-    "id": 66,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -85,6 +84,7 @@
               "type": "prometheus",
               "uid": "P1809F7CD0C75ACF3"
             },
+            "editorMode": "code",
             "exemplar": false,
             "expr": "sum(smartmon_device_smart_healthy{device=~\".*$device\",instance=~\"$instance\"})-sum(smartmon_device_smart_healthy{device=~\".*$device\",instance=~\"$instance\"})",
             "format": "table",
@@ -248,12 +248,12 @@
             },
             "editorMode": "code",
             "exemplar": false,
-            "expr": "max by(disk) (smartmon_temperature_celsius_raw_value{instance=~\"$instance\"})",
+            "expr": "max by(disk, instance) (smartmon_temperature_celsius_raw_value)",
             "format": "time_series",
             "hide": false,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "{{disk}}",
+            "legendFormat": "{{instance}}: {{disk}}",
             "range": true,
             "refId": "A"
           }
@@ -346,7 +346,7 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "max by(disk) (smartmon_spin_up_time_value{instance=~\"$instance\"})",
+            "expr": "max by(disk, instance) (smartmon_spin_up_time_value)",
             "interval": "",
             "legendFormat": "{{instance}}: {{disk}} ",
             "range": true,
@@ -547,7 +547,37 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "thresholds"
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
             },
             "mappings": [],
             "thresholds": {
@@ -626,18 +656,16 @@
         },
         "id": 27,
         "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
           },
-          "textMode": "auto"
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
         },
         "pluginVersion": "9.1.5",
         "targets": [
@@ -646,20 +674,22 @@
               "type": "prometheus",
               "uid": "P1809F7CD0C75ACF3"
             },
+            "editorMode": "code",
             "exemplar": true,
-            "expr": "smartmon_attr_raw_value{name=~\"reported_uncorrect|reallocated_sector_ct|command_timeout|current_pending_sector|offline_uncorrectable|power_on_hours|total_lbas_written|start_stop_count|load_cycle_count\",device=~\".*$device\",instance=~\"$instance\"}",
+            "expr": "smartmon_device_smart_healthy",
             "format": "time_series",
             "instant": false,
             "interval": "",
-            "legendFormat": "{{name}}",
+            "legendFormat": "{{instance}}: {{disk}}",
             "refId": "A"
           }
         ],
         "title": "SMART values",
         "transformations": [],
-        "type": "stat"
+        "type": "timeseries"
       }
     ],
+    "refresh": "5s",
     "schemaVersion": 37,
     "style": "dark",
     "tags": [],
@@ -667,7 +697,7 @@
       "list": [
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": "All",
             "value": "$__all"
           },
@@ -693,7 +723,7 @@
         },
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": "All",
             "value": "$__all"
           },
@@ -755,6 +785,6 @@
     "timezone": "browser",
     "title": "SMART Status",
     "uid": "DiW4iG9iz",
-    "version": 2,
+    "version": 1,
     "weekStart": ""
   }
