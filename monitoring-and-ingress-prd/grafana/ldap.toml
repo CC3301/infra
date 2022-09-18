@@ -12,7 +12,8 @@ bind_password = "${LDAP_BIND_PASSWORD}"
 
 timeout = 10
 
-search_filter = "uid=%s,cn=users,cn=accounts,dc=kapra,dc=vpn"
+#search_filter = "uid=%s,cn=users,cn=accounts,dc=kapra,dc=vpn"
+search_filter = "uid=%s"
 
 search_base_dns = ["cn=users,cn=accounts,dc=kapra,dc=vpn"]
 
