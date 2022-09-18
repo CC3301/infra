@@ -1,0 +1,5 @@
+# grafana, sysaccounts, etc, kapra.vpn
+# dn: uid=grafana,cn=sysaccounts,cn=etc,dc=kapra,dc=vpn
+# uid: grafana
+# passwordExpirationTime: 20380119031407Z
+# passwd _wvDiKS7TxF4jNxvjM_E
