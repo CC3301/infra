@@ -1,25 +1,26 @@
 [[servers]]
 host = "freeipa2.kapra.vpn"
-port = 389
+port = 636
 
-use_ssl = false
+use_ssl = true
 start_tls = false
 
 ssk_skip_verify = false
+root_ca_cert = "/etc/grafana/ipa_ca_root.crt"
 
 bind_dn = "uid=grafana,cn=sysaccounts,cn=etc,dc=kapra,dc=vpn"
 bind_password = "${LDAP_BIND_PASSWORD}"
 
 timeout = 10
 
-#search_filter = "uid=%s,cn=users,cn=accounts,dc=kapra,dc=vpn"
-search_filter = "uid=%s"
+search_filter = "(uid=%s)"
 
 search_base_dns = ["cn=users,cn=accounts,dc=kapra,dc=vpn"]
 
 [servers.attributes]
 member_of = "memberOf"
 email = "mail"
+username = "uid"
 
 [[servers.group_mappings]]
 group_dn = "cn=grafana_users,cn=groups,cn=accounts,dc=kapra,dc=vpn"
@@ -29,3 +30,8 @@ org_role = "Editor"
 group_dn = "cn=fink.home_admins,cn=groups,cn=accounts,dc=kapra,dc=vpn"
 org_role = "Admin"
 grafana_admin = true
+
+[[servers.group_mappings]]
+group_dn = "cn=grafana_admins,cn=groups,cn=accounts,dc=kapra,dc=vpn"
+org_role = "Admin"
+
