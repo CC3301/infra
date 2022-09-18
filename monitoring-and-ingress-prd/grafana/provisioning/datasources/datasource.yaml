@@ -10,3 +10,13 @@ datasources:
   version: 1
   editable: false
   uid: P1809F7CD0C75ACF3
+
+- name: fuckyou
+  type: prometheus
+  access: proxy
+  orgId: 1
+  url: https://prometheus.fink.home
+  isDefault: false
+  version: 1
+  editable: true
+  uid: iSS_-bqGz 
