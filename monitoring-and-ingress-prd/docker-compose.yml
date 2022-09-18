@@ -29,7 +29,7 @@ services:
       - 10.0.0.100
 
   grafana_renderer:
-    image: grafana/grafana-image-renderer:latest
+    build: grafana-image-renderer/.
     environment:
       ENABLE_METRICS: "true"
       BROWSER_TZ: "Europe/Berlin"
