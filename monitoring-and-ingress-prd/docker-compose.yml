@@ -18,9 +18,9 @@ services:
     environment:
        GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-piechart-panel
        GF_RENDERING_SERVER_URL: http://172.16.1.100:8081/render
-       GF_RENDERING_CALLBACK_URL: http://grafana.fink.home/
+       GF_RENDERING_CALLBACK_URL: https://grafana.fink.home/
        GF_LOG_FILTERS: rendering:debug
-       GF_ROOT_URL: http://grafana.fink.home/
+       GF_ROOT_URL: https://grafana.fink.home/
        LDAP_BIND_PASSWORD: "_wvDiKS7TxF4jNxvjM_E"
     networks:
       monitoring-and-ingress-prd:
