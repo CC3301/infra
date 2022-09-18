@@ -41,7 +41,7 @@ jobs:
           compose_file: ./teamspeak3-server-prd/docker-compose.yml
           pull: true
           build: true
-          force_recreate: true
+
 
   Deploy-Redmine-PRD-Stack:
     runs-on: self-hosted
