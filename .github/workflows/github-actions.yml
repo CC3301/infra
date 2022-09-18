@@ -15,6 +15,7 @@ jobs:
           compose_file: ./monitoring-and-ingress-prd/docker-compose.yml
           pull: true
           build: true
+          force_recreate: true
 
   Deploy-Log-Aggregation-PRD-Stack:
     runs-on: self-hosted
