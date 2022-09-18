@@ -1,0 +1,27 @@
+version: "3"
+
+networks:
+ log-aggregartion-prd:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.16.1.0/24
+
+services:
+  reverse-proxy:
+    build: reverse-proxy/.
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      log-aggregation-prd:
+        ipv4_address: 172.16.1.1
+
+  loki:
+    build: loki/.
+    restart: unless-stopped
+    command: -config.file=/etc/loki/loki-config.yml
+    networks:
+      log-aggregation-prd:
+        ipv4_address: 172.16.1.10
