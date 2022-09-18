@@ -6,7 +6,7 @@ use_ssl = true
 start_tls = false
 
 ssk_skip_verify = false
-root_ca_cert = "/etc/grafana/ipa_ca_root.crt"
+root_ca_cert = "/etc/grafana/ipa_ca_root.pem"
 
 bind_dn = "uid=grafana,cn=sysaccounts,cn=etc,dc=kapra,dc=vpn"
 bind_password = "${LDAP_BIND_PASSWORD}"
