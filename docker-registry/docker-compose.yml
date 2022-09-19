@@ -1,0 +1,18 @@
+version: "3"
+
+networks:
+
+  # located on prd-docker1-kch
+  docker-registry:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.16.2.0/24
+
+services:
+  registry:
+    restart: unless-stopped
+    image: registry:2
+    networks:
+      docker-registry:
+        ipv4_address: 172.16.2.10/24

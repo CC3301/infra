@@ -1,7 +1,8 @@
 version: "3"
 
 networks:
- log-aggregation-prd:
+  # located on prd-docker1-kch
+  log-aggregation-prd:
     driver: bridge
     ipam:
      config:
