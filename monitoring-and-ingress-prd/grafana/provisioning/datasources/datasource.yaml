@@ -15,7 +15,7 @@ datasources:
   type: loki
   access: proxy
   orgId: 1
-  url: "http://loki.fink.home"
+  url: "https://loki.fink.home"
   isDefault: false
   version: 1
   editable: false
