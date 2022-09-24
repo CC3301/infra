@@ -1,0 +1,22 @@
+apiVersion: 1
+
+datasources:
+- name: prometheus
+  type: prometheus
+  access: proxy
+  orgId: 1
+  url: https://prometheus.fink.home
+  isDefault: true
+  version: 1
+  editable: false
+  uid: P1809F7CD0C75ACF3
+
+- name: "loki"
+  type: loki
+  access: proxy
+  orgId: 1
+  url: "https://loki.fink.home"
+  isDefault: false
+  version: 1
+  editable: false
+  uid: loki-logs

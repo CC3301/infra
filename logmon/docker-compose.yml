@@ -1,0 +1,168 @@
+version: '3'
+services:
+  nginx-reverse-proxy:
+    build: nginx-reverse-proxy/.
+    restart: unless-stopped
+    ports:
+    - 80:80
+    - 443:443
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.2
+
+  # Monitoring Part starts here
+  grafana:
+    build: grafana/.
+    restart: unless-stopped
+    user: "root"
+    environment:
+       GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-piechart-panel
+       GF_RENDERING_SERVER_URL: http://172.16.1.100:8081/render
+       GF_RENDERING_CALLBACK_URL: https://grafana.fink.home/
+       GF_LOG_FILTERS: rendering:debug
+       GF_ROOT_URL: https://grafana.fink.home/
+       LDAP_BIND_PASSWORD: "_wvDiKS7TxF4jNxvjM_E"
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.10
+    dns:
+      - 10.0.0.100
+
+  grafana_renderer:
+    build: grafana-image-renderer/.
+    environment:
+      ENABLE_METRICS: "true"
+      BROWSER_TZ: "Europe/Berlin"
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.100
+    dns:
+      - 10.0.0.100
+
+  loki:
+    build: loki/.
+    restart: unless-stopped
+    command: -config.file=/etc/loki/loki-config.yml
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.40
+
+        #  influxdb:
+        #    build: influxdb/.
+        #    restart: unless-stopped
+        #    volumes:
+        #    - /opt/containerd/data/monitoring/influxdb_data:/var/lib/influxdb
+        #    - /opt/containerd/data/monitoring/influxdb_data2:/var/lib/influxdb2
+        #    environment:
+        #     - DOCKER_INFLUXDB_INIT_USERNAME=pmx
+        #     - DOCKER_INFLUXDB_INIT_PASSWORD=pmx
+        #     - DOCKER_INFLUXDB_INIT_ORG=pmx
+        #     - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
+        #    networks:
+        #      monitoring-and-ingress-prd:
+        #        ipv4_address: 172.16.1.11
+
+  prometheus:
+    build: prometheus/.
+    restart: unless-stopped
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.12
+    dns:
+      - 10.0.0.100
+
+  # PiHole - Prometheus Bridge
+  #  pihole-prometheus-exporter:
+  #  image: 'ekofr/pihole-exporter:latest'
+  #  environment:
+  #  - PIHOLE_HOSTNAME=pihole0-kch.fink.home,pihole1-tg.fink.home
+  #  - PIHOLE_API_TOKEN=491322461603f606a67431585e063eedc586908538b535384d6b0c9dbd8d5ff2,491322461603f606a67431585e063eedc586908538b535384d6b0c9dbd8d5ff2
+  #  - PORT=9100
+  #  networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.20
+
+  # FritzBox - Prometheus Bridge
+  #fritzbox-prometheus-exporter-fritzbox1-tg.fink.home:
+  #  image: kehrhardt/fritzbox_exporter:latest
+  #  restart: unless-stopped
+  #  environment:
+  #    GATEWAY_URL: "http://192.168.188.1:49000" 
+  #    GATEWAY_LUAURL: "http://192.168.188.1"
+  #    USERNAME: prometheus_bridge_user
+  #    PASSWORD: prometheus_bridge
+  #      LISTEN_ADDRESS: "172.16.1.21:9100"
+  #  networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.21
+  #fritzbox-prometheus-exporter-fritzbox0-kch.fink.home:
+  #  image: kehrhardt/fritzbox_exporter:latest
+  #  restart: unless-stopped
+  #  environment:
+  #    GATEWAY_URL: "http://10.0.0.1:49000" 
+  #    GATEWAY_LUAURL: "http://10.0.0.1"
+  #    USERNAME: prometheus_bridge_user
+  #    PASSWORD: prometheus_bridge
+  #    LISTEN_ADDRESS: "172.16.1.22:9100"
+  #  networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.22
+
+  # NGINX - Promehtheus Bridge
+  #nginx-prometheus-exporter:
+  #  image: nginx/nginx-prometheus-exporter:latest
+  #  restart: unless-stopped
+  #  command:
+  #    - "-nginx.scrape-uri"
+  #    - "http://172.16.1.2:8080/basic_status"
+  #  networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.24
+
+  # Wireguard GEOIP information for connected endpoints
+  wireguard-endpoint-localizer:
+    build: wireguard-endpoint-localizer/.
+    restart: unless-stopped
+    environment:
+      PROM_URL: "http://172.16.1.12:9090"
+      PROM_QUERY: '{"query": "wireguard_peer_info"}'
+      GEO_API_URL: "https://json.geoiplookup.io"
+    networks:
+      monitoring-and-ingress-prd:
+        ipv4_address: 172.16.1.25
+
+  # Docker Stats Exporter
+  #cadvisor:
+  #  image: gcr.io/cadvisor/cadvisor:latest
+  #  restart: unless-stopped
+  #  volumes:
+  #  - /:/rootfs:ro
+  #  - /var/run:/var/run:rw
+  #  - /sys:/sys:ro
+  #  - /var/lib/docker/:/var/lib/docker:ro
+  #    networks:
+  #    monitoring-and-ingress-prd:
+  #      ipv4_address: 172.16.1.30
+  #      cadvisor_internal_network:
+  #        ipv4_address: 172.16.2.10
+  #    depends_on:
+  #      - cadvisor-redis
+
+        #  cadvisor-redis:
+        #    image: redis:latest
+        #    restart: unless-stopped
+        #    networks:
+        #      cadvisor_internal_network:
+        #        ipv4_address: 172.16.2.11
+
+networks:
+  monitoring-and-ingress-prd:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.16.1.0/24
+         #  cadvisor_internal_network:
+         #    driver: bridge
+         #    ipam:
+         #      config:
+         #        - subnet: 172.16.2.0/24
