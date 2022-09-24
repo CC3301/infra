@@ -7,7 +7,7 @@ services:
     - 80:80
     - 443:443
     networks:
-      monitoring-and-ingress-prd:
+      logmon:
         ipv4_address: 172.16.1.2
 
   # Monitoring Part starts here
@@ -23,7 +23,7 @@ services:
        GF_ROOT_URL: https://grafana.fink.home/
        LDAP_BIND_PASSWORD: "_wvDiKS7TxF4jNxvjM_E"
     networks:
-      monitoring-and-ingress-prd:
+      logmon:
         ipv4_address: 172.16.1.10
     dns:
       - 10.0.0.100
@@ -34,7 +34,7 @@ services:
       ENABLE_METRICS: "true"
       BROWSER_TZ: "Europe/Berlin"
     networks:
-      monitoring-and-ingress-prd:
+      logmon:
         ipv4_address: 172.16.1.100
     dns:
       - 10.0.0.100
@@ -44,29 +44,27 @@ services:
     restart: unless-stopped
     command: -config.file=/etc/loki/loki-config.yml
     networks:
-      monitoring-and-ingress-prd:
+      logmon:
         ipv4_address: 172.16.1.40
 
-        #  influxdb:
-        #    build: influxdb/.
-        #    restart: unless-stopped
-        #    volumes:
-        #    - /opt/containerd/data/monitoring/influxdb_data:/var/lib/influxdb
-        #    - /opt/containerd/data/monitoring/influxdb_data2:/var/lib/influxdb2
-        #    environment:
-        #     - DOCKER_INFLUXDB_INIT_USERNAME=pmx
-        #     - DOCKER_INFLUXDB_INIT_PASSWORD=pmx
-        #     - DOCKER_INFLUXDB_INIT_ORG=pmx
-        #     - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
-        #    networks:
-        #      monitoring-and-ingress-prd:
-        #        ipv4_address: 172.16.1.11
+  influxdb:
+    build: influxdb/.
+    restart: unless-stopped
+    environment:
+     - DOCKER_INFLUXDB_INIT_MODE=setup
+     - DOCKER_INFLUXDB_INIT_USERNAME=pmx
+     - DOCKER_INFLUXDB_INIT_PASSWORD=proxmox123
+     - DOCKER_INFLUXDB_INIT_ORG=pmx
+     - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
+    networks:
+      logmon:
+        ipv4_address: 172.16.1.11
 
   prometheus:
     build: prometheus/.
     restart: unless-stopped
     networks:
-      monitoring-and-ingress-prd:
+      logmon:
         ipv4_address: 172.16.1.12
     dns:
       - 10.0.0.100
@@ -79,7 +77,7 @@ services:
   #  - PIHOLE_API_TOKEN=491322461603f606a67431585e063eedc586908538b535384d6b0c9dbd8d5ff2,491322461603f606a67431585e063eedc586908538b535384d6b0c9dbd8d5ff2
   #  - PORT=9100
   #  networks:
-  #    monitoring-and-ingress-prd:
+  #    logmon:
   #      ipv4_address: 172.16.1.20
 
   # FritzBox - Prometheus Bridge
@@ -93,7 +91,7 @@ services:
   #    PASSWORD: prometheus_bridge
   #      LISTEN_ADDRESS: "172.16.1.21:9100"
   #  networks:
-  #    monitoring-and-ingress-prd:
+  #    logmon:
   #      ipv4_address: 172.16.1.21
   #fritzbox-prometheus-exporter-fritzbox0-kch.fink.home:
   #  image: kehrhardt/fritzbox_exporter:latest
@@ -105,7 +103,7 @@ services:
   #    PASSWORD: prometheus_bridge
   #    LISTEN_ADDRESS: "172.16.1.22:9100"
   #  networks:
-  #    monitoring-and-ingress-prd:
+  #    logmon:
   #      ipv4_address: 172.16.1.22
 
   # NGINX - Promehtheus Bridge
@@ -116,7 +114,7 @@ services:
   #    - "-nginx.scrape-uri"
   #    - "http://172.16.1.2:8080/basic_status"
   #  networks:
-  #    monitoring-and-ingress-prd:
+  #    logmon:
   #      ipv4_address: 172.16.1.24
 
   # Wireguard GEOIP information for connected endpoints
@@ -128,41 +126,12 @@ services:
       PROM_QUERY: '{"query": "wireguard_peer_info"}'
       GEO_API_URL: "https://json.geoiplookup.io"
     networks:
-      monitoring-and-ingress-prd:
+      logmon:
         ipv4_address: 172.16.1.25
 
-  # Docker Stats Exporter
-  #cadvisor:
-  #  image: gcr.io/cadvisor/cadvisor:latest
-  #  restart: unless-stopped
-  #  volumes:
-  #  - /:/rootfs:ro
-  #  - /var/run:/var/run:rw
-  #  - /sys:/sys:ro
-  #  - /var/lib/docker/:/var/lib/docker:ro
-  #    networks:
-  #    monitoring-and-ingress-prd:
-  #      ipv4_address: 172.16.1.30
-  #      cadvisor_internal_network:
-  #        ipv4_address: 172.16.2.10
-  #    depends_on:
-  #      - cadvisor-redis
-
-        #  cadvisor-redis:
-        #    image: redis:latest
-        #    restart: unless-stopped
-        #    networks:
-        #      cadvisor_internal_network:
-        #        ipv4_address: 172.16.2.11
-
 networks:
-  monitoring-and-ingress-prd:
+  logmon:
     driver: bridge
     ipam:
      config:
        - subnet: 172.16.1.0/24
-         #  cadvisor_internal_network:
-         #    driver: bridge
-         #    ipam:
-         #      config:
-         #        - subnet: 172.16.2.0/24

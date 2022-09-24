@@ -1,0 +1,3 @@
+[submodule "logmon/wireguard-endpoint-localizer"]
+	path = logmon/wireguard-endpoint-localizer
+	url = git@github.com:CC3301/wireguard-endpoint-localizer
